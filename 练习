@@ -1,0 +1,703 @@
+# 编写函数，求1+2+3+...+n的值
+'''
+def add(num1):
+    if num1 <= 1:
+        print('请重新输入一个数字')
+    else:
+        print((1 + num1) * num1 / 2)
+add(5)
+'''
+
+# 编写一个函数，求多个数中的最大值
+'''nums = [1, 5, 66, 6925, 222]
+
+
+def max_num():
+    soft_nums = sorted(nums, reverse=True)
+    print(soft_nums[0])
+
+
+max_num()
+'''
+# 或者
+'''def max_num(*args):
+    x = args[0]
+    for num in args:
+        if num > x:
+            x = num
+    return x
+
+
+print(max_num(1, 2, 88, 61))
+'''
+
+# 编写一个函数，实现投色子的功能，并打印n个色子的点数和
+'''
+import random
+def touzi_point():
+    point = []
+    print('')
+    while True:
+        begin = int(input('输入1随机抛出色子。'))
+        if begin ==1:
+            n = random.randint(1,6)
+            print(n)
+            point.append(n)
+        else:
+            print('色子点数和是：')
+            print(sum(point))
+            break
+touzi_point()
+'''
+
+# 编写一个函数，使得字典的键值交换
+'''
+dict1 = {'wo': '18', 'ni': '11', 'ta': '16'}
+
+
+def change_k_y(d_name):
+    new_dict = {}
+    for keys, values in d_name.items():
+
+        new_dict[values] = keys
+    print(new_dict)
+change_k_y(dict1)
+
+'''
+
+# 提取一个字符串里的所有字母，并将其组成一个新的字符串
+'''
+def get_litter(words):
+
+    for i in words:
+        iw = i.isalpha()
+        if iw == True:
+            print(i,end ='')
+
+
+get_litter('asf516sdf11sd11651f')
+'''
+
+# 写一个函数，求多个数的平均值
+'''
+def get_average(*args):
+
+    sum = 0
+    for arg in args:
+        sum += arg
+        average = sum /len(args)
+    return average
+'''
+
+# 写一个函数，默认求10的阶乘，也可以求其他的
+'''
+def get_jiecheng(n=10):
+    x = 1
+    while n > 1:
+        x *= n
+        n -= 1
+    prrepint(x)
+
+
+get_jiecheng(6)
+'''
+
+# 写一个自己replace函数，将指定字符串中的指定就字符串转换成指定的新字符串
+'''old_str ='fffffyesffff'
+def my_replace(all_str,old_str,new_str):
+    
+
+
+print('yes' in 'ffffyesffff')
+
+'''
+
+'''
+class House(object):
+    def __init__(self, house_type, all_area, fur_list=None):
+
+        if fur_list is None:
+            fur_list = []
+        self.house_type = house_type
+        self.all_area = all_area
+        self.free_area = 0.8 * all_area
+        self.fur_list = fur_list
+
+    def add_fur(self, x):
+        if self.free_area < x.area:
+            print('面积太大了，放不进去了。')
+        else:
+            self.fur_list.append(x.name)
+            self.free_area -= x.area
+
+    def __str__(self):
+        return '户型={}，剩余面积={}，家具有={}'.format(self.house_type,self.free_area,self.fur_list)
+
+
+
+
+class Furniture(object):
+    def __init__(self, name, area):
+        self.name = name
+        self.area = area
+
+
+bed = Furniture('双人床', 4)
+chest = Furniture('衣柜', 4)
+table = Furniture('桌子', 4)
+
+house = House('四合院',20)
+house.add_fur(bed)
+house.add_fur(chest)
+print(house.__str__())
+
+'''
+
+# 创建一个类属性，并记录通过这个类创建了多少个对象(__init__方法)
+'''
+class Person(object):
+    count = 0
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.count += 1
+
+p1 = Person('s', 12)
+p2= Person('k', 11)
+
+p3 = Person('ss',11)
+p4 = Person('as',56)
+p5 = Person('f',4)
+# p1 = Person()
+print('共有{}位学生'.format(int(Person.count)))
+
+'''
+# def eat(self, food):
+#     print(self.name + '正在吃' + food)
+#
+
+# p1 = Person('amy', 18)
+# p1.eat('fffff')   #不用手动传参
+#
+# Person.eat(p1,'ggggg')  #手动传参
+
+
+# 单例设计模式
+'''
+class Single_Shing:
+    singe = None
+    is_first = True
+    
+    @classmethod
+    def __new__(cls, *args, **kwargs):
+        if cls.singe is None:
+            cls.single = object.__new__(cls)
+        return cls.singe
+
+    def __init__(self, name, age):
+        if self.is_first == True:
+            self.name = name
+            self.age = age
+            self.is_first == False
+
+
+p1 = Single_Shing('zzz', 18)
+p2 = Single_Shing('ssss', 17)
+print(hex(id(p1)))
+print(p1)'''
+
+# 继承
+'''
+class Animal(object):
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    
+    def sleep(self):
+        print(self.name + '正在睡觉')
+
+class Dog(Animal):
+    
+    def bark(self):
+        print(self.name + '正在吠叫')
+            
+class Student(Animal):
+    
+    def study(self):
+        print(self.name + '正在学习')
+        
+d1 = Dog()'''
+
+'''
+# 写一个计算器类，可以进行加减乘除运算（不必要创建一个实例对象）
+
+class Calculator(object):
+    def add(a, b):
+        return a + b
+
+    def sub(a, b):
+        return a - b
+
+    def mul(a, b):
+        return a * b
+
+    def divi(a, b):
+        return a / b
+
+
+print(Calculator.add(1, 3))
+
+'''
+'''
+#建立一个汽车类Auto
+#包括轮胎个数，汽车颜色，重量，速度属性，并通过不同的构造方法创建实例
+#至少要求汽车可以加速，减速，停车
+#再定义一个小汽车类CarAuto 继承Auto 并添加空调，cd属性
+#重新实现方法覆盖加速减速的方法
+
+
+class Auto(object):
+    def __init__(self,color,weight,tyre_num = 4,speed = 0):
+
+        self.color = color
+        self.weight = weight
+        self.tyre_num = tyre_num
+        self.speed = speed
+
+    def speed_change(self,x):
+        if x > 0:
+            print('汽车加速至{}km/h'.format(x))
+        if x<0 :
+            x= abs(x)
+            print('汽车减速至{}km/h'.format(x))
+        else:
+            print('车已停下。')
+
+
+Auto1 = Auto('blue','10t')
+
+
+#再定义一个小汽车类CarAuto 继承Auto 并添加空调，cd属性
+#重新实现方法覆盖加速减速的方法
+class CarAuto(Auto):
+    def __init__(self,color,weight,air_cond,cd,tyre_num = 4,speed = 0):
+        # self.tyre_num = tyre_num
+        # self.color = color
+        # self.weight = weight
+        # self.speed = speed
+        #可以用super
+        super(CarAuto, self).__init__(color,weight,tyre_num ,speed )
+        self.air_cond = air_cond
+        self.cd = cd
+
+p1 = CarAuto('blue','10t','big','loud',4,'80km/h')
+Auto1.speed_change(-5)
+
+print(p1.cd)'''
+
+'''
+#创建文件
+file = open('ddd','')
+file.write('混账玩意')
+
+while True :
+    content = file.read(1111)
+    if not content:
+        break
+    print(content)
+'''
+'''
+# 文件备份
+import os
+if os.path.isfile:
+
+    file_name = input('请输入文件的路径：')
+    old_file = open(file_name, 'rb')
+    names = file_name.rpartition('.')
+
+    new_file_name = names[0] + '.bak' + names[2]
+    new_file = open(new_file_name, 'wb')
+    new_file.write(old_file.read())
+    new_file.close()
+    old_file.close()
+else:
+    print('这不是一个文件路径')
+'''
+
+'''
+# 定义一个点类 Pointer
+# 属性是横坐标和竖向坐标
+# 定义一个圆类Circle
+# 属性有圆形点cp和半径radius
+# 方法有1.求圆的面积2.求圆的边长3.求指定点与圆的关系
+# 设计到的数学公式：指定点到圆心的距离 与 圆的半径进行比较
+
+import math
+class Pointer(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+class Circle(object):
+    def __init__(self, cp_x, cp_y, radius):
+        self.cp_x = cp_x
+        self.cp_y = cp_y
+        self.radius = radius
+
+
+    def get_s(self):
+        return math.pi * int(self.radius) ** 2
+
+
+    def get_length(self):
+       return math.pi * 2 * int(self.radius)
+
+    def compire_cp(self, point):
+        r = ((self.cp_x - point.x) ** 2 + (self.cp_y - point.y) ** 2) ** (1 / 2)
+        if r > self.radius:
+            print('点在圆外')
+        elif r < self.radius:
+            print('点在圆内')
+        else:
+            print('点在圆上')
+
+p1 = Pointer(5100,0)
+c1 = Circle(6,9,8)
+print(c1.get_s())
+print(c1.get_length())
+c1.compire_cp(p1)
+'''
+# 如果代码内已经有了print（），后面的方法再加print会输出一个None
+
+
+'''
+
+#宠物店类
+#属性：店名，店中的宠物
+#方法：展示所有的宠物信息
+#g狗类：PetDog
+#属性：昵称，性别，年龄，品种
+#方法叫拆家吃饭
+#猫PetCat
+#属性：昵称，性别，年龄，品种
+#方法：叫撒娇吃饭
+class PetShop(object):
+    def __init__(self, shop_name, pets):
+
+        self.shop_name = shop_name
+        self.pets = pets
+
+    def show_all(self):
+        if len(self.pets) == 0:
+            print('本店还没有宠物。')
+            return
+
+
+        # print('{}有{}只宠物，分别是'.format(self.shop_name,len(self.pets)))
+        # for pet in self.pets:
+        #     print('{}，性别{}，年龄{}岁，类型：{}'.format(pet.pet_name,pet.gender,pet.age,pet.type),sep = '')
+        #但这有bug，如猫狗的属性不同的话，无法使用此种写法，可以使用__str__
+        class PetDog:
+        def __str__(self):
+            return '姓名。。。'.format(self.name....)
+        
+        class PetCat:
+            x =  super(PetCat,self).__str__()
+            x += '眼睛颜色：{}'.format(self.eyes_color)        
+        for pet in self.pets:
+            print(pet)
+        
+        
+        
+        
+class PetDog(object):
+    def __init__(self,pet_name,gender,age,type):
+        self.pet_name = pet_name
+        self.gender = gender
+        self.age = age
+        self.type = type
+
+    def bark(self):
+        print(self.pet_name,'is barking WW.')
+
+    def work(self):
+        print(self.pet_name,'is destorying the home')
+
+    def eat(self):
+        print(self.pet_name,'is eating gutou' )
+class PetCat(PetDog):
+
+    def meow(self):
+        print(self.pet_name,'is meowing MM')
+    def fawn(self):
+        print(self.pet_name,'is fawning')
+    def eat(self):
+        print(self.pet_name,'is eating fish')
+
+
+
+dog = PetDog('大黄','公','1','哈士奇')
+cat = PetCat('小黄','母','1','波斯')
+PetShop.pets = [dog,cat]
+shop = PetShop('宠物店',[dog,cat])
+shop.show_all()
+'''
+
+'''class Person(object):
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return '姓名{}，年龄{}'.format(self.name,self.age)
+
+p1 = Person('zzz',8)
+p1 = Person('ssss',18)
+print(p1)
+'''
+
+
+# 学生类，属性学号，姓名，年龄，性别，成绩
+# 班级类Grade，属性班级名称，班级中的学生（列表）
+# 方法：查看该班级中所有学生的信息，查看指定学号的学生信息，查看班级中成绩不合格的学生信息，将班级中的学生按成绩降序排序
+'''
+class Student(object):
+    def __init__(self, num, name, age, gender, grades):
+        self.num = num
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.grades = grades
+
+    def __str__(self):
+        return'编号{}，姓名{}，年龄{}，性别{}，分数{}'.format(self.num,self.name,self.age,
+                                                    self.gender,self.grades)
+
+class Grade(object):
+    def __init__(self, class_name, students):
+        self.class_name = class_name
+        self.studnets = students
+
+    def show_all(self):
+        for a in students:
+            print(a)
+
+    def fail_student(self):
+        fail = filter(lambda student: student.grades < 60, students)
+        #fail为一个可迭代对象
+        for x in fail:
+            print(x)
+
+    def order_student(self):
+        students.sort(key = lambda s:s.grades,reverse = True)
+        for b in students:
+            print(b)
+
+
+s1 = Student('001', '张三', 18, '男', 80)
+s2 = Student('002', '李四', 28, '男', 90)
+s3 = Student('003', '王五', 8, '男', 40)
+s4 = Student('004', '赵六', 15, '男', 70)
+s5 = Student('005', 'tony', 19, '男', 51)
+students = [s1,s2,s3,s4,s5]
+g = Grade('1班', students)'''
+#自定义异常
+'''
+try :
+    password = input('请输入您的密码')
+except 6 < len(password) < 12:
+    print('密码格式不正确')
+else:
+    print('密码已保存')
+
+
+
+
+'''
+'''#斐波那契1，1，2，3，5，8
+def get_fbnq(n):
+    try:
+        if n == 1 or n==0:
+            print('斐波那契数列第{}项为{}'.format(n,1))
+        else:
+            num1 = 1
+            num2 = 1
+            x=0
+            for i in range(1,n):
+                x = num1
+                num1 = num2
+                num2 += x
+            print('斐波那契数列第{}项为{}'.format(n,num1))
+    except:
+        print('请输入正确的数字')
+
+'''
+
+#名片管理系统
+'''
+users_list = []
+
+def add_user():
+    name = input('请输入姓名：')
+    for n in users_list:
+        if n['name'] == name:
+            print('该用户名已存在')
+            break
+
+        else:
+            age = input('请输入年龄：')
+            tel = input('请输入电话号码：')
+            user = {'name' : name,'age' : age,'tel' :tel}
+            print(user,'信息已录入系统。')
+            users_list.append(user)
+            print(users_list)
+def del_user():
+    number = input('请输入要删除的序号：')
+    if number.isdigit():
+        number = int(number)
+        if 0 <= len(users_list):
+            if_del = input('确认是否删除（y/n）：')
+            if if_del =='y':
+                users_list.pop(int(number))
+
+    else:
+        print('输入的序号错误')
+
+
+def modify_user():
+    number = input('请输入要修改的序号：')
+    user= users_list[int(number)]
+    print('您要修改的信息为：'
+          '姓名：{name},年龄：{age}，电话号码：{tel}'.farmat(**user))
+    new_name = input('请输入新的姓名：')
+    for n in users_list:
+        if new_name == n['name']:
+            new_age = int(input('请输入新的年龄：'))
+            new_tel= input('请输入新的电话号码：')
+            user['name'] = new_name
+            user['age'] = new_age
+            user['tel'] = new_tel
+    else:
+        print('用户名已存在')
+def search_user():
+    name = input('您要查询的姓名是：')
+    for n in users_list:
+        if name == n['name']:
+            print('查询的信息如下：'
+                  '姓名{name},年龄{age},手机号码{tel}'.format(**n))
+    else:
+        print('未能查询到{}'.format(name),'的相关信息。')
+def show_all():
+    print('序号       姓名             年龄                手机号码')
+    for i,n in enumerate(users_list):
+        print(i,n['name'],n['age'],n['tel'])
+def exit_system():
+    answer = input('确认退出？y/n')
+    if answer == 'y':
+        exit(0)
+
+
+
+
+
+def start():
+    while True:
+        print(
+            '-----------------名片管理系统-------------------'
+            '1.添加名片'
+            '2.删除名片'
+            '3.修改名片'
+            '4.查询名片'
+            '5.显示所有名片'
+            '6.退出系统'
+        )
+        operator = input('请输入要执行的指令（数字）：')
+        if operator == '1':
+            add_user()
+        elif operator =='2':
+            del_user()
+        elif operator =='3':
+            modify_user()
+        elif operator =='4':
+            search_user()
+        elif operator =='5':
+            show_all()
+        elif operator =='6':
+            exit_system()
+        else:
+            print('您输入的不合规')
+
+
+start()
+
+
+
+'''
+'''
+
+#学生管理系统
+import datetime
+def read_file(file_name):
+    try :
+        with open('../pythonProject1/' + file_name ,'r',encoding='utf8') as file:
+            content = file.read()
+            return content
+    except:
+        print('文件错误')
+
+class TeacherObject(object):
+    def __init__(self,teacher_name,password):
+        self.teacher_name = teacher_name
+        self.password = password
+
+
+def login():
+    pass
+
+def register():
+    while True:
+        teacher_name = input('请输入用户名（3到6位）：')
+        if 3 <= len(teacher_name) <= 6:
+            break
+        else:
+            print('输入有误，请重新输入：')
+
+    while True:
+        password1 = input('请输入密码（3到6位）：')
+        if 3 <= len(password1) <= 6:
+            break
+        else:
+            print('输入有误，请重新输入：')
+    while True:
+        password2 = input('请再输入一次：')
+        if password2 == password1:
+            break
+        else:
+            print('两次输入不一致，')
+    print('欢迎您的注册')
+    #创建一个teacher对象
+
+    datetime.date[teacher_name] = password1
+
+
+
+def start():
+    content = read_file('welcome.txt')
+    while True:
+        operator = input(content + '\n请选择（1-3）：')
+        if operator == '1':
+            login()
+        elif operator == '2':
+            register()
+        elif operator == '3':
+            exit(0)
+        else :
+            print('输入错误，再试一次：')
+
+start()
+
+'''
+
+
